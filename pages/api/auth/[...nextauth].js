@@ -42,7 +42,7 @@ export default NextAuth({
 
         try {
 
-          connectDB()
+         await connectDB()
 
         const email = credentials.email
         const password = credentials.password
@@ -77,11 +77,17 @@ export default NextAuth({
         throw new Error(error.message);
 
       }
+
+      finally
+      {
+        await clientPromise.close()
         
         
       }
     
-    }),
+      }
+      
+      }),
  
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
