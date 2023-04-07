@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Rating from "../rating";
+import { useEffect, useState, memo } from "react";
 
-function ProductCard({
+
+const ProductCard = ({
+
   type,
   title,
   price,
@@ -14,7 +17,11 @@ function ProductCard({
   showDiscountTag,
   link,
   discountRate,
-}) {
+  id
+}) =>{
+
+
+
   const router = useRouter();
 
   const handleLink = async () => {
@@ -22,17 +29,21 @@ function ProductCard({
     await router.push(link);
   };
 
-  
+
+
+
   return (
     <div className={styles.productCard}>
       <div className={styles.productCard__imageContainer}>
         <Image
+          key = {image}
           src={image}
           width={184}
           height={184}
           alt="none"
           onClick={handleLink}
-        />
+          
+                  />
 
         {showDiscountTag && (
           <div className={styles.discountCard}>
@@ -49,7 +60,7 @@ function ProductCard({
           <div className={styles.productCard__details__rating}>
             <span>{
 
-              <Rating key= {rating} value={rating} totalStars={5} />
+              <Rating key= {id} value={rating} totalStars={5} />
               
               }</span>
           </div>
@@ -64,4 +75,4 @@ function ProductCard({
   
 }
 
-export default ProductCard;
+export default React.memo(ProductCard);

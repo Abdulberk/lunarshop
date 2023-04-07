@@ -11,8 +11,14 @@ import Rating from "../rating";
 function Showcase({ title, products, type }) {
 
   const [chosenProducts, setChosenProducts] = useState(products.slice(0, 5));
-const [startIndex, setStartIndex] = useState(0)
-const [endIndex, setEndIndex] = useState(5)
+const [Index, setIndex] = useState({
+  startIndex : 0,
+  endIndex : 5
+
+})
+
+const {startIndex, endIndex} = Index;
+
 
 
 const nextButtonRef = useRef(null)
@@ -57,7 +63,7 @@ useEffect(() => {
 
   checkButtons()
 
-}, [chosenProducts])
+}, [startIndex, endIndex, products.length])
 
 
 const handleNext = () => {
@@ -65,8 +71,15 @@ const handleNext = () => {
   const newStartIndex = startIndex + 1;
   const newEndIndex = endIndex + 1;
 
-  setStartIndex(newStartIndex)
-  setEndIndex(newEndIndex)
+  setIndex(
+    prev => ({
+      ...prev,
+      startIndex : newStartIndex,
+      endIndex : newEndIndex
+    })
+    
+  )
+
   setChosenProducts(products.slice(newStartIndex, newEndIndex))
 
 }
@@ -76,8 +89,15 @@ const handlePrev = () => {
   const newStartIndex = startIndex - 1;
   const newEndIndex = endIndex - 1;
 
-  setStartIndex(newStartIndex)
-  setEndIndex(newEndIndex)
+  setIndex(
+    prev => ({
+      ...prev,
+      startIndex : newStartIndex,
+      endIndex : newEndIndex
+    })
+
+  )
+  
   setChosenProducts(products.slice(newStartIndex, newEndIndex))
 
 }
@@ -96,9 +116,9 @@ const handlePrev = () => {
       
       {type === "specialOffers" ? (
         <div className={styles.specialOffersContainer}>
-          {chosenProducts.map((product,index) => (
+          {chosenProducts.map((product) => (
             <ProductCard
-              key={index}
+              key={product.id}
               type={type}
               title={product.title}
               price={product.price}
@@ -112,9 +132,9 @@ const handlePrev = () => {
         </div>
       ) : type === "chosen" ? (
         <div className={styles.chosenContainer}>
-          {chosenProducts.map((product,index) => (
+          {chosenProducts.map((product) => (
             <ProductCard
-              key={index}
+              key={product.id}
               type={type}
               title={product.title}
               price={product.price}
@@ -123,6 +143,7 @@ const handlePrev = () => {
               showDiscountTag={product.showDiscountTag}
               link={product.link}
               discountRate={product.discountRate}
+              id = {product.id}
             />
           ))}
         </div>
