@@ -44,23 +44,31 @@ handler.post (async (req, res) => {
          const baseURL = process.env.BASE_URL;
          const url = `${baseURL}/auth/reset/${resetToken}`; 
 
-         sendEmail(email, url, "Reset your password", resetMail)
+        const mailResult =  sendEmail(email, url, "Reset your password", resetMail)
 
-           
-            await disconnect();
+        if (!mailResult) {
+            return res.status(500).json({
+                error: "Something went wrong"
+            })
+        }
 
-            res.status(200).json({ message: "Success! Please check your email" })
+        await disconnect();
+
+        res.status(200).json({message: "Email sent successfully"})
+   
+        
 
     }
     catch (error) {
        
-        res.status(500).json({error: error.message})
-        
+        await disconnect();
+        res.status(500).json({error: "Something went wrong"})
     }
-    
+
     finally {
         await disconnect();
     }
+    
 
 
 
