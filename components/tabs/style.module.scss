@@ -1,0 +1,98 @@
+
+.mainContainer {
+
+
+    &__tabs {
+
+        width:100%;
+        height:41px;
+      
+
+        display:flex;
+        flex-direction:row;
+        align-items: center;
+        justify-content: center;
+    
+
+        ul {
+
+            display:flex;
+            flex-direction:row;
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            width:100%;
+            max-width: 600px;
+            height:100%;
+          
+            align-items: center;
+            justify-content: center;
+            column-gap:6px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            color: #222831;
+
+
+
+
+            li {
+
+                height:100%;
+                width: 100%;
+                
+
+                display:flex;
+                align-items: center;
+                justify-content: center;
+
+                cursor:pointer;
+
+
+
+
+                &:focus{
+
+                    flex-direction: column; 
+
+                        
+                        &:after {
+                            content: '';
+                            position: relative;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 0;
+                            border-bottom: 3px solid #E94B35;
+                            
+                        }
+                        
+                }
+
+            }
+
+
+        }
+        
+
+        
+
+
+
+    }
+    
+    &__tabContentContainer {
+    
+        width:100%;
+        height:250px;
+        border: 1px solid blue;
+    }
+
+
+
+}
+
+
