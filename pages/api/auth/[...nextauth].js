@@ -9,7 +9,7 @@ import User from '../../../models/User'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import joi from 'joi'
-import {connectDB} from '../../../utils/db'
+import {connectDB, disconnect} from '../../../utils/db'
 import {MongoDBAdapter} from '@next-auth/mongodb-adapter'
 import clientPromise from './lib/mongodb'
 import axios from 'axios'
@@ -80,7 +80,7 @@ export default NextAuth({
 
       finally
       {
-        await clientPromise.close()
+        await disconnect()
         
         
       }
