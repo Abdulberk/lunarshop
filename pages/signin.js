@@ -166,7 +166,8 @@ function Signin({ providers, csrfToken, callbackUrl }) {
               <div className={styles.divider}>
                 <span>or</span>
               </div>
-              {Object.values(providers).map((item, index) =>
+              { providers &&
+                Object.values(providers).map((item, index) =>
                 item.id === "credentials" ? null : (
                   <div className={styles.login__social} key={index}>
                     <a onClick={() => signIn(item.id)}>
