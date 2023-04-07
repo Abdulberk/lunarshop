@@ -15,6 +15,11 @@ const nextConfig = {
       'res.cloudinary.com',
       'www.google.com',
       'www.google',
+      'https://homepage-lunar.s3.amazonaws',
+      'homepage-lunar.s3.amazonaws',
+      'homepage-lunar.s3.amazonaws.com',
+      'https://homepage-lunar.s3.amazonaws.com',
+      
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

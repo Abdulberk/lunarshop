@@ -45,7 +45,7 @@ function Main() {
 
         <Link href="/">
           <a>
-            <Image src="https://res.cloudinary.com/divmyjqwk/image/upload/v1680708823/italian_kptxr5.png" width={216} height={63} alt="logo" className={styles.logo} />
+            <Image src="https://homepage-lunar.s3.amazonaws.com/logo.svg" width={216} height={63} alt="logo" className={styles.logo} />
           </a>
         </Link>
 
