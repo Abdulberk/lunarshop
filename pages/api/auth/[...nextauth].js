@@ -1,18 +1,15 @@
 import NextAuth from 'next-auth'
-import AppleProvider from 'next-auth/providers/apple'
-import FacebookProvider from 'next-auth/providers/facebook'
 import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import CredentialsProvider from "next-auth/providers/credentials";
 import dotenv from 'dotenv'
 import User from '../../../models/User'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import joi from 'joi'
 import {connectDB, disconnect} from '../../../utils/db'
 import {MongoDBAdapter} from '@next-auth/mongodb-adapter'
 import clientPromise from './lib/mongodb'
-import axios from 'axios'
+
 import { getToken } from 'next-auth/jwt'
 
 
@@ -113,10 +110,7 @@ export default NextAuth({
       let user = await User.findById(token.sub);
      
       session.user.id = token.sub || user?._id?.toString();
-      session.user.role = user?.role || 'user';
-    
-  
-      
+      session.user.role = user?.role || 'user';      
       return session;
     }
   },

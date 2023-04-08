@@ -19,12 +19,9 @@ const nextConfig = {
       'homepage-lunar.s3.amazonaws',
       'homepage-lunar.s3.amazonaws.com',
       'https://homepage-lunar.s3.amazonaws.com',
-      'd1.awsstatic.com',
+      'd1.awsstatic.com'
 
     ],
-    loader: 'default',
-    path: '/_next/image',
-    minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -36,4 +33,8 @@ const nextConfig = {
 
 }
 
-module.exports = nextConfig
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+module.exports = withBundleAnalyzer(nextConfig)

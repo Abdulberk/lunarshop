@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import Header from "../components/header/index";
-import Footer from "../components/footer/index";
+import React from "react";
+
 import styles from "../styles/signin.module.scss";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import Link from "next/link";
@@ -11,7 +10,7 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 import { getProviders } from "next-auth/react";
-import { useSession } from "next-auth/react";
+
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import BarLoader from "react-spinners/BarLoader";
@@ -33,6 +32,7 @@ function Signin({ providers, csrfToken, callbackUrl }) {
 
   const [loading, setLoading] = useState(false);
   
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
