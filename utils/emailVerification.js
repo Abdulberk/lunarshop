@@ -26,7 +26,7 @@ export const sendEmail = async (to, url,subject, template) => {
         refresh_token: MAILING_SERVICE_CLIENT_REFRESH_TOKEN,
     });
 
-    const accessToken = oauth2Client.getAccessToken();
+    const accessToken = await oauth2Client.getAccessToken();
     const smtpTransport = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -50,15 +50,14 @@ export const sendEmail = async (to, url,subject, template) => {
         
     };
 
+        try {
+            const result = await smtpTransport.sendMail(mailOptions);
+            return result;
+        } catch (error) {
 
-    smtpTransport.sendMail(mailOptions, (error, response) => {
-       if (error) return error;
-
-       return response;
-    });
-
-
-
+            return error;
+            
+        }
 
 }
 
