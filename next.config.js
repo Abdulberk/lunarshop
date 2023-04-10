@@ -19,9 +19,13 @@ const nextConfig = {
       'homepage-lunar.s3.amazonaws',
       'homepage-lunar.s3.amazonaws.com',
       'https://homepage-lunar.s3.amazonaws.com',
-      'd1.awsstatic.com'
-
+      'd1.awsstatic.com',
+      'avatars.githubusercontent.com',
+      'https://avatars.githubusercontent.com',
+      
+  
     ],
+    
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
