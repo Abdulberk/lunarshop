@@ -20,11 +20,11 @@ function UserMenu({session}) {
 
           
 
-          <Image src = {session.user.image || avatar}  alt = "avatar" className= {styles.menu__img} width= {75} height= {75} />
+          <Image src = {session?.user?.image ? session?.user?.image : avatar}  alt = "avatar" className= {styles.menu__img} width= {75} height= {75} />
        
           <div className={styles.col}>  
           <span>Welcome back, </span>
-          <h3>{session.user.name}</h3>
+          <h3>{session?.user?.name}</h3>
           <span onClick= {()=>signOut()}>Sign out</span>
 
 

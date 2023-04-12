@@ -50,7 +50,6 @@ function Signin({ providers, csrfToken, callbackUrl }) {
 
     if (result?.ok) {
       const session = await getSession();
-      console.log(session);
       const successMessage = "You have successfully logged in !";
       setLoading(false);
 
