@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import BarLoader from "react-spinners/BarLoader";
 import {getCsrfToken} from 'next-auth/react'
+import { getToken } from "next-auth/jwt";
 
 
 function Signin({ providers, csrfToken, callbackUrl }) {
@@ -192,7 +193,10 @@ export async function getServerSideProps(context) {
   const { req, query } = context;
   const providers = await getProviders();
 
-  const session = await getSession({ req });
+  const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  
+
+
 
   const csrfToken = await getCsrfToken(context);
   const { callbackUrl } = query;
