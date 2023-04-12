@@ -52,18 +52,13 @@ function Signin({ providers, csrfToken, callbackUrl }) {
       const session = await getSession();
       console.log(session);
       const successMessage = "You have successfully logged in !";
-      const waitTime = 3000;
       setLoading(false);
 
       setMessage({ ...message, successMessage });
 
-      let timer = setTimeout(() => {
         router.push(callbackUrl || "/");
-      }, waitTime);
+ 
 
-      return () => {
-        clearTimeout(timer);
-      };
     }
   };
 
