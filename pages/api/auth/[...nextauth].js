@@ -37,50 +37,44 @@ export default NextAuth({
 
       async authorize(credentials,req) {
 
+        let user = null;
         try {
+          await connectDB()
 
-         await connectDB()
+          const email = credentials.email
+          const password = credentials.password
 
-        const email = credentials.email
-        const password = credentials.password
-        console.log(email,password)
+          console.log(email, password)
 
-        if (!email || !password) {
-          
-          throw new Error('Please provide an email and password.');
+          if (!email || !password) {
+            throw new Error('Please provide an email and password.');
+          }
+
+          const { error } = loginSchema.validate({ email, password })
+          if (error) {
+            throw new Error(error.details[0].message);
+          }
+
+          user = await User.findOne({ email })
+
+          if (!user) {
+            throw new Error('Invalid email or password.');
+          }
+
+          const checkMatch = await bcrypt.compare(password, user.password)
+
+          if (!checkMatch) {
+            throw new Error('Invalid email or password.');
+          }
+
+        } catch (error) {
+          console.error(error);
+          throw new Error(error.message);
+
+        } finally {
+          await disconnect();
         }
-
-        const {error} = loginSchema.validate({email,password})
-        if (error) {
-          await disconnect()
-          throw new Error(error.details[0].message);
-        }
-
-        const user = await User.findOne({email})
-
-        if (!user) {
-          await disconnect()
-          throw new Error('Invalid email or password.');
-        }
-
-        const checkMatch = await bcrypt.compare(password, user.password)
-
-        if (!checkMatch) {
-          await disconnect()
-          throw new Error('Invalid email or password.');
-        }
-
-
-
-
         return user
-      } catch (error) {
-        await disconnect()
-        throw new Error(error.message);
-
-      }
-
-    
       }
       
       }),
