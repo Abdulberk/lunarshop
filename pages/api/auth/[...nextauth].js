@@ -10,6 +10,7 @@ import { connectDB, disconnect } from "../../../utils/db";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 
+
 dotenv.config();
 
 const loginSchema = joi.object({
@@ -88,15 +89,29 @@ export default NextAuth({
   },
 
   callbacks: {
-    async session({ session, token }) {
-      let user = await User.findById(token.sub);
+    async session({ session, user, token }) {
+      let getUser = await User.findById(token.sub);
 
-      session.user.id = token.sub || user?._id?.toString();
-      session.user.role = user?.role || "user";
+      
+      session.user.id = token.sub || getUser?._id?.toString();
+      session.user.role = getUser?.role || "user";
+      session.user.emailVerified = getUser?.emailVerified || false;
+      session.user.accessToken = token?.accessToken || null;
+
+
 
       console.log(session);
       return session;
     },
+    async jwt({ token, user, account, profile }) {
+
+      if (user) {
+        token.sub = user._id;
+        token.accessToken = user.accessToken;
+      }
+      return token;
+
+    }
   },
 
   session: {
@@ -109,3 +124,4 @@ export default NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
 }
 )
+
