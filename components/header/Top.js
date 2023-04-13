@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import UserMenu from "./UserMenu";
 import avatar from "../../public/avatar.png";
-import { useSession, signIn, signOut } from "next-auth/react"
-import { getSession } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react"
+
  
 function Top() {
 
@@ -86,10 +86,11 @@ function Top() {
 
 export default Top;
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
 
-  const session = await getSession(context);
+  const session = await getSession(context)
 
+  
 
   return {
     props: {

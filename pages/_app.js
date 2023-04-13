@@ -11,6 +11,7 @@ import Footer from '../components/footer/index'
 
 
 
+
 let persistor = persistStore(store)
 
 
