@@ -88,32 +88,6 @@ export default NextAuth({
     signIn: "/signin",
   },
 
-  callbacks: {
-    async session({ session, user, token }) {
-      let getUser = await User.findById(token.sub);
-
-      
-      session.user.id = token.sub || getUser?._id?.toString();
-      session.user.role = getUser?.role || "user";
-      session.user.emailVerified = getUser?.emailVerified || false;
-      session.user.accessToken = token?.accessToken || null;
-
-
-
-      console.log(session);
-      return session;
-    },
-    async jwt({ token, user, account, profile }) {
-
-      if (user) {
-        token.sub = user._id;
-        token.accessToken = user.accessToken;
-      }
-      return token;
-
-    }
-  },
-
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
