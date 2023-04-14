@@ -25,6 +25,15 @@ const nextConfig = {
       
   
     ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        pathname: '**',
+        port: '',
+
+      }
+    ],
     
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

@@ -11,6 +11,8 @@ import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 
 
+
+
 dotenv.config();
 
 const loginSchema = joi.object({
@@ -55,6 +57,8 @@ export default NextAuth({
 
           user = await User.findOne({ email });
 
+
+
           if (!user) {
             throw new Error("Invalid email or password.");
           }
@@ -70,6 +74,7 @@ export default NextAuth({
         } finally {
           await disconnect();
         }
+
         return user;
       },
     }),
@@ -86,7 +91,8 @@ export default NextAuth({
 
   pages: {
     signIn: "/signin",
-  },
+  },  
+  
 
   session: {
     strategy: "jwt",

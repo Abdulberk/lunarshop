@@ -49,7 +49,7 @@ function Signin({ providers, csrfToken, callbackUrl }) {
     }
 
     if (result?.ok) {
-      const session = await getSession();
+      
       const successMessage = "You have successfully logged in !";
       setLoading(false);
 

@@ -85,21 +85,5 @@ function Top() {
 
 export default Top;
 
-export async function getServerSideProps(context) {
-
-
-
-  const session = await getSession(context)
-
-
-  
-
-  return {
-    props: {
-      session,
-    },
-  };
-}
-
 
 
