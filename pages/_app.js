@@ -43,7 +43,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
        
         <SliderTest />
         <ShowcaseTest  />
-        <Component {...pageProps} />
+        {/*<Component {...pageProps} />*/}
       
         <Footer />
       </PersistGate>
