@@ -8,6 +8,11 @@ import { SessionProvider } from "next-auth/react"
 import '../styles/globals.scss'
 import Header from '../components/header/index'
 import Footer from '../components/footer/index'
+import ShowcaseTest from './test/showcase/index'
+import SliderTest from './test/slider/index'
+
+
+
 
 
 
@@ -35,7 +40,11 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Header />
+       
+        <SliderTest />
+        <ShowcaseTest  />
         <Component {...pageProps} />
+      
         <Footer />
       </PersistGate>
     </Provider>

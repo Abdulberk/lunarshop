@@ -104,7 +104,7 @@ const handlePrev = () => {
 
 
   return (
-    <>
+    <div style = {{marginTop:"30px"}}>
     
     <h2 className={styles.showCaseTitle}>{title}</h2>
     <div className={styles.showCaseContainer}>
@@ -156,7 +156,7 @@ const handlePrev = () => {
        
     </div>
    
-    </>
+    </div>
   );
 }
 
