@@ -40,10 +40,9 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Header />
+    
        
-        <SliderTest />
-        <ShowcaseTest  />
-        {/*<Component {...pageProps} />*/}
+        <Component {...pageProps} />
       
         <Footer />
       </PersistGate>
