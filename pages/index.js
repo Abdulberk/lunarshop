@@ -14,16 +14,9 @@ import SliderTest from './test/slider/index'
 
 export default function Home() {
   return (
-    <>
-
-   
+    <> 
         <SliderTest />
-        <ShowcaseTest />
-
-    
-
-   
-      
+        <ShowcaseTest />   
     </>
   )
 }

@@ -10,6 +10,7 @@ import Header from '../components/header/index'
 import Footer from '../components/footer/index'
 import ShowcaseTest from './test/showcase/index'
 import SliderTest from './test/slider/index'
+import "../styles/style.css"
 
 
 
